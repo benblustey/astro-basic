@@ -4,7 +4,7 @@ import Hello from '../components/Hello';
 import Layout from '../layouts/Layout.astro';
 import { DateTime } from 'luxon';
 import { getAllEvents } from '../lib/getAllEvents';
-const data = await getAllEvents();
+const events = await getAllEvents();
 
 const lastBuild = DateTime.now().toFormat('M/dd/yy HH:mm:ss');
 ---
@@ -23,8 +23,8 @@ const lastBuild = DateTime.now().toFormat('M/dd/yy HH:mm:ss');
 					entire neighborhood. Estimated sample area is 0.4 mile radius.
 				</p>
 			</div>
-			<Hello client:load />
-			<pre>{JSON.stringify(data, null, 2)}</pre>
+			<Hello {...events} />
+			<pre>{JSON.stringify(events, null, 2)}</pre>
 		</main>
 		<footer class="w-full row-start-3 flex gap-[24px] flex-wrap items-center justify-center">Last updated: {lastBuild}</footer>
 	</div>
