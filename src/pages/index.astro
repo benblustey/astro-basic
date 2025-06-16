@@ -2,7 +2,9 @@
 import '../styles/global.css';
 import Hello from '../components/Hello';
 import Layout from '../layouts/Layout.astro';
+import { DateTime } from 'luxon';
 
+const lastBuild = DateTime.now().toFormat('M/dd/yy HH:mm:ss');
 ---
 
 <Layout title="Event Calendar - Home">
@@ -21,6 +23,6 @@ import Layout from '../layouts/Layout.astro';
 			</div>
 			<Hello />
 		</main>
-		<footer class="row-start-3 flex gap-[24px] flex-wrap items-center justify-center"></footer>
+		<footer class="w-full row-start-3 flex gap-[24px] flex-wrap items-center justify-center">Last updated: {lastBuild}</footer>
 	</div>
 </Layout>
