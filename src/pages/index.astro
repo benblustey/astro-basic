@@ -3,6 +3,8 @@ import '../styles/global.css';
 import Hello from '../components/Hello';
 import Layout from '../layouts/Layout.astro';
 import { DateTime } from 'luxon';
+import { getAllEvents } from '../lib/getAllEvents';
+const data = await getAllEvents();
 
 const lastBuild = DateTime.now().toFormat('M/dd/yy HH:mm:ss');
 ---
@@ -22,6 +24,7 @@ const lastBuild = DateTime.now().toFormat('M/dd/yy HH:mm:ss');
 				</p>
 			</div>
 			<Hello client:load />
+			<pre>{JSON.stringify(data, null, 2)}</pre>
 		</main>
 		<footer class="w-full row-start-3 flex gap-[24px] flex-wrap items-center justify-center">Last updated: {lastBuild}</footer>
 	</div>
