@@ -1,1 +1,175 @@
 @import "tailwindcss";
+:root {
+  /*https://yeun.github.io/open-color/*/
+  --accent: 224, 49, 49; /*RED*/
+  --accent-light: 134, 142, 150; /*LIGHT-GREY*/
+  --accent-dark: 128, 128, 128; /*GREY*/
+  --accent-very-dark: 35, 38, 45; /*VERY DARK #23262d*/
+  --accent-important: 255, 107, 107;
+  --accent-black: 0, 0, 0; /*BLACK*/
+  --accent-white: 255,255,255;
+  --container-size: 960px;
+  --accent-gradient: linear-gradient(
+    45deg,
+    rgb(var(--accent-dark)) 0%,
+    rgb(var(--accent)),
+    white 60%
+  );
+  --page-scale: 1;
+  --container-size-xs: calc(33.75rem * var(--page-scale));
+  --container-size-sm: calc(45rem * var(--page-scale));
+  --container-size-md: calc(60rem * var(--page-scale));
+  --container-size-lg: calc(71.25rem * var(--page-scale));
+  --container-size-xl: calc(82.5rem * var(--page-scale));
+
+  --container-margin-xs: clamp(0.5rem, calc(0.5rem + ((1vw - 0.48rem) * 2.5316)), 1rem);
+  --container-margin-sm: clamp(1rem, calc(1rem + ((1vw - 0.48rem) * 2.5316)), 2.5rem);
+  --container-margin-md: clamp(3rem, calc(3rem + ((1vw - 0.48rem) * 2.5316)), 4rem);
+  --container-margin-lg: clamp(4rem, calc(4rem + ((1vw - 0.48rem) * 2.5316)), 5rem);
+  --container-margin-xl: clamp(5rem, calc(5rem + ((1vw - 0.48rem) * 15.8228)), 11.25rem);
+
+  --container-radius-default: calc(0.25rem * 1);
+  --container-radius-lg: calc(1rem * 1);
+  --container-radius-md: calc(0.5rem * 1);
+  --container-radius-sm: calc(0.25rem * 1);
+  --container-radius-xl: calc(2rem * 1);
+  --container-radius-xs: calc(0.125rem * 1)
+
+  --container-spacing-lg: calc(1.25rem * 1);
+  --container-spacing-md: calc(1rem * 1);
+  --container-spacing-sm: calc(0.75rem * 1);
+  --container-spacing-xl: calc(2rem * 1);
+  --container-spacing-xs: calc(0.625rem * 1);
+
+  --font-size-sm: clamp(12px,calc(4.25rem + ((1vw - 7.68px) * 12.5)), 14px);
+  --font-size-md: clamp(18px,calc(4.25rem + ((1vw - 7.68px) * 12.5)), 24px);
+  --font-size-xl: clamp(68px,calc(4.25rem + ((1vw - 7.68px) * 12.5)), 120px);
+  --font-size-xxl: clamp(68px,calc(4.25rem + ((1vw - 7.68px) * 12.5)), 120px);
+
+  --hourly-width: 0.04vw;
+}
+html {
+  font-family: system-ui, sans-serif;
+  background: #13151a;
+  background-size: 224px;
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+footer {
+  border-top: 1px solid rgb(var(--accent));
+  text-align: center;
+  padding: 20px 0 50px;
+  color: rgb(var(--accent-light));
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+h1 {
+  font-size: var(--font-size-xxl);
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  margin-bottom: 1em;
+  /* margin-top: var(--container-size-lg); */
+  margin-top: var(--container-margin-xl);
+  margin-bottom: var(--container-margin-md);
+  color: #FFF;
+}
+
+.text-gradient {
+  background-image: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 400%;
+  background-position: 0%;
+}
+.intro-text {
+  color: rgb(var(--accent-light));
+  text-align: center;
+  font-size: var(--font-size-md);
+  max-width: calc(40rem * var(--page-scale));
+  margin-inline: auto;
+  margin-bottom: var(--container-margin-xl);
+  line-height: 1.8rem;
+  @media screen and (max-width: 767px) {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  p + p {
+    margin-top: var(--container-margin-xs);
+  }
+}
+
+.card-group {
+  margin-bottom: var(--container-margin-lg);
+  .foot-note {
+    font-size: var(--font-size-sm);
+    color: var(--accent-light);
+  }
+  .card-group-wrapper {
+    background-image: linear-gradient( -60deg, rgb(var(--accent-black)) 0%, rgb(var(--accent)) 100% );
+    padding: var(--container-spacing-xl);
+    border-radius: var(--container-radius-md);
+    margin-bottom: var(--container-margin-xs);  
+    @media screen and (max-width: 767px) {
+      div + div {
+        padding-top: var(--container-spacing-xl);
+        margin-top: var(--container-spacing-xl);
+        border-top: calc(0.0625rem * var(--page-scale)) solid rgb(var(--accent-black));
+      }
+    }
+    @media screen and (min-width: 768px) {
+      display: flex;
+      div + div {
+        padding-left: var(--container-spacing-xl);
+        margin-left: var(--container-spacing-xl);
+        border-left: calc(0.0625rem * var(--page-scale)) solid rgb(var(--accent-black));
+      }
+    }
+    p {
+      padding: 0;
+      margin: 0;
+    }
+    div {
+      flex: 1;
+    }
+    .card-data {
+      font-size: clamp(2rem, calc(2rem + ((1vw - 0.48rem) * 5.0633)), 3rem);
+      @media screen and (max-width: 768px) {
+        display: inline;
+        padding-right: 16px;
+      }
+
+    }
+    .card-title {
+      font-size: clamp(1.2rem, calc(1.2rem + ((1vw - 0.48rem) * 0.5063)), 1.4rem);
+      border-bottom: 1px solid rgb(var(--accent-white));
+      margin-bottom: 8px;
+      @media screen and (max-width: 768px) {
+        display: inline;
+      }
+    }
+    .card-desc {
+      font-size: 1rem;
+    }
+  }
+}

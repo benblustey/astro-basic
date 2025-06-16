@@ -1,18 +1,25 @@
 ---
 import '../styles/global.css';
 import Hello from '../components/Hello';
+import Layout from '../layouts/Layout.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro React</h1>
-		<Hello />
-	</body>
-</html>
+<Layout title="Event Calendar - Home">
+	<div class="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+		<main class="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
+			<div class="text-center w-full">
+				<h1>
+					Livermore <span class="text-gradient">Fireworks</span>
+				</h1>
+			</div>
+			<div class="intro-text">
+				<p>
+					Using a single camera with audio analysis, this data is only a single sample of the
+					entire neighborhood. Estimated sample area is 0.4 mile radius.
+				</p>
+			</div>
+			<Hello />
+		</main>
+		<footer class="row-start-3 flex gap-[24px] flex-wrap items-center justify-center"></footer>
+	</div>
+</Layout>
