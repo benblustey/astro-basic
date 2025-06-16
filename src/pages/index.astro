@@ -1,12 +1,50 @@
 ---
 import '../styles/global.css';
 import Hello from '../components/Hello';
+import HourlyChart from '../components/HourlyChart';
+import Calendar from '../components/Calendar';
+import CardGroup from '../components/CardGroup';
 import Layout from '../layouts/Layout.astro';
 import { DateTime } from 'luxon';
 import { getAllEvents } from '../lib/getAllEvents';
-const events = await getAllEvents();
+const allEvents = await getAllEvents();
+const population = 5650
+const veterans = Math.round(population * 0.046)
 
+const daysTotal = allEvents.daysTotal;
+const eventsTotal = allEvents.eventTotal;
 const lastBuild = DateTime.now().toFormat('M/dd/yy HH:mm:ss');
+const cards = [
+	{
+		data: `~${population}`,
+		title: 'Neighbors',
+		desc: 'This data only reflects only the Old Town neighborhood and not the entire city of Livermore.* If data was acquired city wide, the number of affected residence would be much higher.',
+		footnote: {
+			text: `* Estimated population acquired using maps.ie`,
+			link: 'https://www.maps.ie/population/',
+		},
+	},
+	{
+		data: `${veterans}`,
+		title: 'Veterans',
+		desc: 'Based on census data of 4.6% of residents. Higher percentage than anywhere in the Bay Area. Half of these veterans are from Vietnam, Gulf, Afghanistan, and Iraq wars.†',
+		footnote: {
+			text: `† Census Reporter data from 2022`,
+			link: 'https://censusreporter.org/profiles/16000US0641992-livermore-ca/',
+		},
+	},
+	{
+		data: `${daysTotal}`,
+		title: 'Days of Fireworks',
+		desc: `There have been a total of ${daysTotal} days since June 25, 2024 with fireworks/explosions detonated. AI sound analyzation was set for Explosions, due to the mortars not triggering firework sound models.`,
+	},
+	{
+		data: `${eventsTotal}`,
+		title: 'Total Events',
+		desc: 'Events are recordings of fireworks/explosions detected, not individual fireworks. Meaning, there are much more being detonated.',
+	},
+]
+
 ---
 
 <Layout title="Event Calendar - Home">
@@ -23,8 +61,9 @@ const lastBuild = DateTime.now().toFormat('M/dd/yy HH:mm:ss');
 					entire neighborhood. Estimated sample area is 0.4 mile radius.
 				</p>
 			</div>
-			<Hello {...events} />
-			<pre>{JSON.stringify(events, null, 2)}</pre>
+			<CardGroup cards={cards} />
+			<HourlyChart data={allEvents.hourlyEvents} />
+			<Calendar data={allEvents.calendarData} startDate={new Date('2024-06-02')} endDate={new Date()} />
 		</main>
 		<footer class="w-full row-start-3 flex gap-[24px] flex-wrap items-center justify-center">Last updated: {lastBuild}</footer>
 	</div>
